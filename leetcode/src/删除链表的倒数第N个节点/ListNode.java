@@ -16,25 +16,42 @@ public class ListNode {
 }
 
 class Solution {
-    // 遍历...
+    // 前后指针
     public ListNode removeNthFromEnd(ListNode head, int n) {
-
-        ListNode p = head;
-        int size = 0;
-        while (p != null) {
-            p = p.next;
-            size ++;
+        // 构造一个节点，指向头节点，防止要删除的节点是头节点的情况
+        ListNode temp = new ListNode();
+        temp.next = head;
+        ListNode p1 = temp;
+        ListNode p2 = temp;
+        for (int i = 0; i < n; i++) {
+            p2 = p2.next;
         }
-        if (size == 1) return null;
-        if (n == size) return head.next;
-        size -= 1;
-        p = head;
-        while (size > n) {
-            p = p.next;
-            size -= 1;
+        while (p2.next != null) {
+            p1 = p1.next;
+            p2 = p2.next;
         }
-        p.next = p.next.next;
-        return head;
-
+        p1.next = p1.next.next;
+        return temp.next;
     }
+//    // 遍历...
+//    public ListNode removeNthFromEnd(ListNode head, int n) {
+//
+//        ListNode p = head;
+//        int size = 0;
+//        while (p != null) {
+//            p = p.next;
+//            size ++;
+//        }
+//        if (size == 1) return null;
+//        if (n == size) return head.next;
+//        size -= 1;
+//        p = head;
+//        while (size > n) {
+//            p = p.next;
+//            size -= 1;
+//        }
+//        p.next = p.next.next;
+//        return head;
+//
+//    }
 }
