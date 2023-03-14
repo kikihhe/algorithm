@@ -18,8 +18,6 @@ public class Main {
                 count += arr[i];
             }
                 System.out.println(count);
-
-
         }
 
     }
