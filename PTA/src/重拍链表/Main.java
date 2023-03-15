@@ -70,9 +70,6 @@ public class Main {
         for (int i = 0; i < result.size(); i++) {
             System.out.println(result.get(i).toString());
         }
-
-
-
     }
 
     private static List<Node> creatList(List<Node> nodes) {
