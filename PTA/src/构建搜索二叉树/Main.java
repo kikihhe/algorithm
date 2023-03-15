@@ -7,7 +7,7 @@ class BinaryTree {
         public Node left;
         public Node right;
         public Node(int data) {
-            this.data =- data;
+            this.data = data;
         }
     }
 
@@ -84,6 +84,22 @@ public class Main {
         }
         // 查看搜索二叉树是否为完全二叉树
         boolean completeTree = binaryTree.isCompleteTree(binaryTree.root);
+        List<List<Integer>> lists = binaryTree.levelOrder(binaryTree.root);
+//        lists.forEach(list -> {
+//            list.forEach(item -> {
+//                System.out.print(item + " ");
+//            });
+//        });
+        for (int i = 0; i < lists.size(); i++) {
+            for (int j = 0; j < lists.get(i).size(); j++) {
+                System.out.print(lists.get(i).get(j));
+                if (j != lists.get(i).size()-1) System.out.print(" ");
+            }
+            if (i != lists.size()-1)
+            System.out.print(" ");
+        }
+        System.out.println();
+        System.out.println(completeTree ? "Yes" : "No");
 
     }
 }
