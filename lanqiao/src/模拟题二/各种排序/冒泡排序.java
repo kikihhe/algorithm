@@ -1,12 +1,10 @@
-package 各种排序;
+package 模拟题二.各种排序;
 
 import java.util.Arrays;
 import java.util.Random;
 
 /**
- * @author : 小何
- * @Description :
- * @date : 2023-03-19 09:24
+ * 冒泡排序是稳定排序
  */
 public class 冒泡排序 {
     public static void bubbleSort(int[] arr) {
