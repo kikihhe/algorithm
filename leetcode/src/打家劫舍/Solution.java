@@ -2,32 +2,31 @@ package 打家劫舍;
 
 
 public class Solution {
-    // 递归写法
-    public static void diGui() {
-        Solution solution = new Solution();
-
-        int[] nums = new int[]{2,10,5};
-
-        int result = solution.process(nums, 0);
-
-        System.out.println(result);
-    }
-
-    public int process(int[] nums, int i) {
-        if (i >= nums.length) {
-            return 0;
+    public int rob(int[] nums) {
+        //
+        if (nums == null || nums.length == 0) return 0;
+        int[] dp = new int[nums.length + 1];
+        dp[1] = nums[0];
+        for (int i = 2; i < dp.length; i++) {
+            // 偷这间房，说明dp[i] = dp[i-2] + nums[i-1];
+            // 不偷这间房，说明 dp[i] = dp[i-1]
+            // 偷与不偷取最大值
+            dp[i] = Math.max(dp[i-2] + nums[i-1], dp[i] = dp[i-1]);
         }
-        return Math.max(process(nums, i + 2) + nums[i], process(nums, i + 1));
+        return dp[nums.length];
+
     }
+
+
+
 
     // 改dp
     public static void main(String[] args) {
-        int[] nums = new int[]{2,10,5};
-        int[] dp = new int[nums.length + 1];
-        dp[1] = nums[0];
-        for (int i = 2; i < nums.length; i++) {
+        Solution solution = new Solution();
+        int[] ints = new int[]{2,7,9,3,1};
+        int rob = solution.rob(ints);
+        System.out.println(rob);
 
-        }
     }
 
 }
