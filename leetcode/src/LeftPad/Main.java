@@ -31,6 +31,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        HashSet<Integer> set = new HashSet<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+
         int n = scanner.nextInt();
         char c = scanner.next().charAt(0);
         scanner.nextLine();
@@ -52,3 +55,4 @@ public class Main {
         System.out.println();
     }
 }
+
