@@ -38,7 +38,6 @@ public class Singleton {
 
     /**
      * 静态内部类方式
-     * @return
      */
     public static Singleton getInstanceInnerClass() {
         return SingletonHolder.SINGLETON;
