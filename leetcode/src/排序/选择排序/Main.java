@@ -3,9 +3,7 @@ package 排序.选择排序;
 import java.util.Arrays;
 
 /**
- * @author : 小何
- * @Description :
- * @date : 2023-04-02 14:11
+ *
  */
 public class Main {
     public static void swap(int[] arr, int i, int j) {
