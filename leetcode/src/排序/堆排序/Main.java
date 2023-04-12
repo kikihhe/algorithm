@@ -10,47 +10,56 @@ import java.util.Arrays;
  * @date : 2023-04-02 14:36
  */
 public class Main {
-    // 大根堆，将i挂到合适的位置
-    // n: 数组长度
-    // i: 当前需要维护的下标
-    public static void heap(int[] arr, int n, int i) {
-        // 自己、左孩子、右孩子哪一个更大
-        int larger = i;
-        // 左孩子、右孩子
-        int left = i*2 + 1;
-        int right = i*2 + 2;
-
-        // 找出当前节点应该往哪里挂
-        if (left < n && arr[left] > arr[larger]) {
-            larger = left;
-        }
-        if (right < n && arr[right] > arr[larger]) {
-            larger = right;
-        }
-        // 最大值不是他，说明i有一个孩子比它大，让i向下走
-        if (larger != i) {
-            Util.swap(arr, i, larger);
-            heap(arr, arr.length, larger);
-        }
+    public static void main(String[] args) {
+        int[] arr = {1, 6, 2, 8, 4, 3, 10};
+        heapSort(arr, arr.length);
+        System.out.println(Arrays.toString(arr));
     }
 
-    public static void heapSort(int[] arr) {
-        // 建堆
-        for (int i = arr.length / 2 - 1; i >= 0; i--) {
-            heap(arr, arr.length, i);
+    /**
+     * 堆排序
+     * @param arr
+     * @param n 数组长度
+     */
+    public static void heapSort(int[] arr, int n) {
+        // 构建堆(大)
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heap(arr, n, i);
         }
-        // 排序
-        for (int i = arr.length - 1; i > 0; i--) {
-            Util.swap(arr, 0, i);
+        // 开始排序
+        for (int i = n - 1; i > 0; i--) {
+            Util.swap(arr, i, 0);
             heap(arr, i, 0);
         }
     }
 
+    /**
+     * 调整堆
+     * @param arr 需要调整的数组
+     * @param n 数组大小
+     * @param i 当前调整的下标
+     */
+    public static void heap(int[] arr, int n, int i) {
+        // 如果没有孩子，直接结束
+        if (i * 2 + 1 > n) return;
+        int maxIndex = i;
 
-    public static void main(String[] args) {
-        int[] arr = {2,3,1,4,7,9,8,14,10,16};
-        heapSort(arr);
-        System.out.println(Arrays.toString(arr));
+        int leftChild = i * 2 + 1;
+        int rightChild = i * 2 + 2;
+
+        if(leftChild < n && arr[maxIndex] < arr[leftChild]) {
+            maxIndex = leftChild;
+        }
+        if(rightChild < n && arr[maxIndex] < arr[rightChild]) {
+            maxIndex = rightChild;
+        }
+        // 如果有孩子比自己大，交换自己与孩子的位置，再去调整自己的位置
+        if (maxIndex != i) {
+            Util.swap(arr, maxIndex, i);
+            heap(arr, n, maxIndex);
+        }
+
 
     }
+
 }
