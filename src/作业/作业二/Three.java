@@ -2,11 +2,7 @@ package 作业.作业二;
 
 import java.util.Scanner;
 
-/**
- * @author : 小何
- * @Description :
- * @date : 2023-04-12 23:10
- */
+
 public class Three {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
