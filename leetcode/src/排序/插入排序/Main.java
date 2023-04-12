@@ -13,8 +13,8 @@ public class Main {
     public static void insertSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int j = i;
-            while(j > 0 && arr[j] < arr[j-1]) {
-                Util.swap(arr, j, j-1);
+            while (j > 0 && arr[j] > arr[j-1]) {
+                Util.swap(arr, j, j - 1);
                 j--;
             }
         }
