@@ -1,6 +1,6 @@
-package 作业.作业五;
+package homework.homework5;
 
-import 作业.作业四.Card;
+import homework.homework4.Card;
 
 public class DeckOfCardsTest {
 

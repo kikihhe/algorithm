@@ -1,4 +1,4 @@
-package 作业.作业三;
+package homework.homework3;
 
         import java.util.Scanner;
 
@@ -7,13 +7,20 @@ public class Two {
                 Scanner scanner = new Scanner(System.in);
                 System.out.print("Enter a string: ");
                 String input = scanner.nextLine().toLowerCase();
+                // Store the number of A/a occurrences
                 int vowelA = 0;
+                // Store the number of E/e occurrences
                 int vowelE = 0;
+                // Store the number of I/i occurrences
                 int vowelI = 0;
+                // Store the number of O/o occurrences
                 int vowelO = 0;
+                // Number of times the U/u is stored
                 int vowelU = 0;
+                // Stores the number of occurrences of other characters
                 int nonVowelCount = 0;
 
+                // The string is traversed with switch
                 for (int i = 0; i < input.length(); i++) {
                     char ch = input.charAt(i);
                     switch (ch) {

@@ -1,4 +1,4 @@
-package 作业.作业四;
+package homework.homework4;
 
 public class Bug {
 //    Current position

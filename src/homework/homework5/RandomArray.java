@@ -1,6 +1,5 @@
-package 作业.作业五;
+package homework.homework5;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
