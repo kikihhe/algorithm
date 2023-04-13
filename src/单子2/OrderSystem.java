@@ -35,6 +35,25 @@ public class OrderSystem {
         orders.remove(memberID);
 
     }
+    // Check whether the entered memberID is valid
+    public static boolean isInputMemberIDValid(int memberID) {
+        if (memberID < 8000 && memberID != 0) {
+            return false;
+        }
+        return true;
+    }
+    public static boolean isInputOrderValid(String order) {
+        if (order.length() != 1) {
+            return false;
+        }
+        // If the input value is A-D, then it minus A must be 0-3
+        int i = order.charAt(0) - 'A';
+        if (i >= 0 && i <= 3) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 	
     public static void main(String[] args) {
 
@@ -42,6 +61,11 @@ public class OrderSystem {
             System.out.println("Please input your member ID [input 0 for guest]: ");
 
             int memberID = scanner.nextInt();
+            // If the entered memberID is invalid, ask user to enter it again
+            if (!isInputMemberIDValid(memberID)) {
+                System.out.println("Invalid input!Please input again");
+                continue;
+            }
             if(memberID == -1) {
                 System.out.println("Have a nice day!!!");
                 break;
@@ -52,6 +76,10 @@ public class OrderSystem {
                 }
                 menu1();
                 String food = scanner.next().toUpperCase(Locale.ROOT);
+                if (!isInputOrderValid(food)) {
+                    System.out.println("Invalid input!Please input again");
+                    continue;
+                }
                 FoodOrder foodOrder = new FoodOrder(memberID, food);
                 if (orders.isEmpty()) {
                     orders.addToHead(foodOrder);
