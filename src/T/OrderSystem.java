@@ -1,5 +1,6 @@
-package 单子2;
+package T;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -32,7 +33,11 @@ public class OrderSystem {
     public static void menu4(LinkedList orders) {
         System.out.println("Enter Member ID: ");
         int memberID = scanner.nextInt();
-        orders.remove(memberID);
+        try {
+            orders.remove(memberID);
+        } catch (EmptyListException e) {
+            System.out.println("FoodOrder is null");
+        }
 
     }
     // Check whether the entered memberID is valid
@@ -59,20 +64,28 @@ public class OrderSystem {
 
         while (true) {
             System.out.println("Please input your member ID [input 0 for guest]: ");
-
-            int memberID = scanner.nextInt();
-            // If the entered memberID is invalid, ask user to enter it again
-            if (!isInputMemberIDValid(memberID)) {
-                System.out.println("Invalid input!Please input again");
+            int memberID = 0;
+            try {
+                memberID = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input!Please input again!");
+                scanner = new Scanner(System.in);
                 continue;
             }
             if(memberID == -1) {
                 System.out.println("Have a nice day!!!");
                 break;
             }
+            // If the entered memberID is invalid, ask user to enter it again
+            if (!isInputMemberIDValid(memberID)) {
+                System.out.println("Invalid input!Please input again");
+                continue;
+            }
             if (memberID != 9999) {
+                boolean isGuest = false;
                 if (memberID == 0) {
-                    memberID = nextGuestID++;
+                    isGuest = true;
+                    memberID = nextGuestID;
                 }
                 menu1();
                 String food = scanner.next().toUpperCase(Locale.ROOT);
@@ -86,9 +99,19 @@ public class OrderSystem {
                 } else {
                     orders.add(foodOrder);
                 }
+                if (isGuest) nextGuestID++;
+
             } else {
                 menu2();
-                int select = scanner.nextInt();
+                int select = 0;
+                try {
+                    select = scanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input!Please input again");
+                    scanner = new Scanner(System.in);
+                    continue;
+                }
+
                 if (select == 1) {
                     menu3(orders);
                 } else {
