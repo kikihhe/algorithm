@@ -109,9 +109,12 @@ public class LinkedList {
 	// to be completed ...
 	// Method remove(int) is to remove a ListNode from the LinkedList with a specific Member ID
 	public void remove(int targetID) throws EmptyListException {
-		if (isEmpty()) throw new EmptyListException();
-		if (head.getNext() == null && ((FoodOrder)head.getData()).getMemberID() == targetID) {
-			head = null;
+		if (head == null || isEmpty()) throw new EmptyListException();
+		boolean flag = false;
+		if (((FoodOrder)head.getData()).getMemberID() == targetID) {
+			removeFromHead();
+			flag = true;
+			length--;
 			return;
 		}
 		ListNode pre = head;
@@ -120,10 +123,14 @@ public class LinkedList {
 			if (((FoodOrder)p.getData()).getMemberID() == targetID) {
 				pre.setNext(p.getNext());
 				length--;
+				flag = true;
 				break;
 			}
 			pre = p;
 			p = p.getNext();
+		}
+		if (!flag) {
+			System.out.println("None of order!");
 		}
 	}
 

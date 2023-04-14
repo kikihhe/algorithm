@@ -36,14 +36,14 @@ public class OrderSystem {
         try {
             orders.remove(memberID);
         } catch (EmptyListException e) {
-            System.out.println("FoodOrder is null");
+            System.out.println("None of order");
         }
 
     }
     // Check whether the entered memberID is valid
-    public static boolean isInputMemberIDValid(int memberID) {
+    public static boolean isInputMemberIDValid(int memberID) throws InvalidInputException {
         if (memberID < 8000 && memberID != 0) {
-            return false;
+            throw new InvalidInputException("Invalid input!Please input again!");
         }
         return true;
     }
@@ -60,7 +60,7 @@ public class OrderSystem {
         }
     }
 	
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidInputException {
 
         while (true) {
             System.out.println("Please input your member ID [input 0 for guest]: ");
@@ -68,19 +68,22 @@ public class OrderSystem {
             try {
                 memberID = scanner.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input!Please input again!");
+                System.out.println("Input Error!!!!");
                 scanner = new Scanner(System.in);
-                continue;
+                System.exit(1);
             }
             if(memberID == -1) {
                 System.out.println("Have a nice day!!!");
                 break;
             }
             // If the entered memberID is invalid, ask user to enter it again
-            if (!isInputMemberIDValid(memberID)) {
+            try {
+                isInputMemberIDValid(memberID);
+            } catch (InvalidInputException e) {
                 System.out.println("Invalid input!Please input again");
                 continue;
             }
+
             if (memberID != 9999) {
                 boolean isGuest = false;
                 if (memberID == 0) {
@@ -114,8 +117,10 @@ public class OrderSystem {
 
                 if (select == 1) {
                     menu3(orders);
-                } else {
+                } else if (select == 2) {
                     menu4(orders);
+                } else {
+                    System.out.println("Invalid input!Please input again");
                 }
 
             }
