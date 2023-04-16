@@ -3,6 +3,7 @@ package 排序.堆排序;
 import 排序.Util;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
  * @author : 小何
@@ -12,8 +13,12 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         int[] arr = {1, 6, 2, 8, 4, 3, 10};
-        heapSort(arr, arr.length);
-        System.out.println(Arrays.toString(arr));
+        int i = topK(arr, 2);
+        System.out.println(i);
+        int[] ints = topKPlus(arr, 3);
+        System.out.println(Arrays.toString(ints));
+
+
     }
 
     /**
@@ -60,6 +65,48 @@ public class Main {
         }
 
 
+    }
+
+    /**
+     * 求第k大的数
+     */
+    public static int topK(int[] arr, int k) {
+        // 创建大根堆/小根堆
+        for (int i = arr.length / 2 - 1; i >= 0; i--) {
+            heap(arr, arr.length, i);
+        }
+
+        for (int i = 0; i < k; i++) {
+            Util.swap(arr, arr.length - 1 - i, 0);
+            heap(arr, arr.length - 1 - i, 0);
+        }
+
+        return arr[arr.length - k];
+    }
+
+    public static int[] topKPlus(int[] arr, int k) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        // 用数组的前k个元素建堆(小)
+        for (int i = 0; i < k; i++) {
+            queue.offer(arr[i]);
+        }
+        // 遍历剩下的 k -> arr.length 的元素
+
+        for (int i = k; i < arr.length; i++) {
+            if (arr[i] > queue.peek()) {
+                queue.poll();
+                queue.offer(arr[i]);
+            }
+        }
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[k-i-1] = queue.poll();
+        }
+
+
+
+
+        return result;
     }
 
 }

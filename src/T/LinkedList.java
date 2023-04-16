@@ -114,7 +114,6 @@ public class LinkedList {
 		if (((FoodOrder)head.getData()).getMemberID() == targetID) {
 			removeFromHead();
 			flag = true;
-			length--;
 			return;
 		}
 		ListNode pre = head;
