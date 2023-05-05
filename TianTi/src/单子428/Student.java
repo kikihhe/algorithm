@@ -77,4 +77,14 @@ public class Student extends Person{
     public void setScores(List<Integer> scores) {
         this.scores = scores;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "sno='" + sno + '\'' +
+                ", department='" + department + '\'' +
+                ", courses=" + courses +
+                ", scores=" + scores +
+                '}';
+    }
 }
