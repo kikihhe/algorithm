@@ -2,15 +2,18 @@ package 单子69;
 
 import java.util.Random;
 
-/**
- *
- */
 public class Person {
     // 名字
     public String name;
 
     // 一次走几步
     public int step;
+
+    // 血量
+    public int hp;
+
+    // 攻击力
+    public int atk;
 
     // 当前的位置
     public int x;
@@ -72,6 +75,7 @@ public class Person {
                 }
             } else {
                 person.isDead = true;
+                person.hp = 0;
                 System.out.println(name + "杀死了" + person.name);
             }
         }
@@ -79,60 +83,72 @@ public class Person {
 
     }
 
-    public Person(String name, int step, int x) {
+    public Person(String name, int step,  int x,  int bloodVolume, int aggressivity)
+    {
         this.name = name;
         this.step = step;
+        this.hp = bloodVolume;
+        this.atk = aggressivity;
         this.x = x;
+
     }
 
-    public static void main(String[] args) {
-        int i = 0;
-        Person caocao = new Person("曹操", 1, 10);
-        Person xuhuang = new Person("徐晃", 1, 10);
-        Person zhangliao = new Person("张辽", 1, 10);
-        Person guanyu = new Person("关羽", 2, 0);
+    public static void main(String[] args)
+    {
 
-        boolean isKill = false;
-        while (caocao.x > guanyu.x) {
-            // 先跑
-            guanyu.run();
-            caocao.run();
-            xuhuang.run();
-            zhangliao.run();
-            System.out.println("------------------------------");
-            System.out.println("此时已经跑了" + (++i) +"轮，每个人的位置为: \n" +
-                    "曹操: " + caocao.x + "米\n" +
-                    "徐晃: " + xuhuang.x + "米\n" +
-                    "张辽: " + zhangliao.x + "米\n" +
-                    "关羽: " + guanyu.x + "米"
-            );
 
-            // 执行技能
+                int i = 0;
+                Person caocao = new Person("曹操", 1, 10, 100, 0);
+                Person xuhuang = new Person("徐晃", 1, 10, 70, 0);
+                Person zhangliao = new Person("张辽", 1, 10, 50, 0);
+                Person guanyu = new Person("关羽", 2, 0, 100, 100);
 
-            caocao.jineng(null, 2);
-            xuhuang.jineng(caocao, 1);
-            zhangliao.jineng(guanyu, 1);
-            if (guanyu.x >= xuhuang.x) {
-                guanyu.kill(xuhuang);
-            }
-            if (guanyu.x >= zhangliao.x) {
-                guanyu.kill(zhangliao);
-            }
-            if (guanyu.x >= caocao.x) {
-                 guanyu.kill(caocao);
-                break;
-            }
-            if (caocao.x - guanyu.x >= 20) {
-                System.out.println("曹操甩了关羽20米，逃跑成功!");
-                break;
-            }
-            System.out.println("触发技能后的位置为: \n" +
-                    "曹操: " + caocao.x + "米\n" +
-                    "徐晃: " + xuhuang.x + "米\n" +
-                    "张辽: " + zhangliao.x + "米\n" +
-                    "关羽: " + guanyu.x + "米"
-            );
-            System.out.println("------------------------------");
+                boolean isKill = false;
+                while (caocao.x > guanyu.x) {
+                    // 先跑
+                    guanyu.run();
+                    caocao.run();
+                    xuhuang.run();
+                    zhangliao.run();
+                    System.out.println("------------------------------");
+                    System.out.println("此时已经跑了" + (++i) +"轮，每个人的位置为: \n" +
+                            "曹操: " + caocao.x + "米, 血量: " + caocao.hp+ "\n" +
+                            "徐晃: " + xuhuang.x + "米, 血量: " + xuhuang.hp +"\n" +
+                            "张辽: " + zhangliao.x + "米, 血量: " + zhangliao.hp +"\n" +
+                            "关羽: " + guanyu.x + "米, 攻击力: " + guanyu.atk
+                    );
+
+                    // 执行技能
+
+                    caocao.jineng(null, 2);
+                    xuhuang.jineng(caocao, 1);
+                    zhangliao.jineng(guanyu, 1);
+                    if (guanyu.x >= xuhuang.x) {
+                        guanyu.kill(xuhuang);
+                    }
+                    if (guanyu.x >= zhangliao.x) {
+                        guanyu.kill(zhangliao);
+                    }
+                    if (guanyu.x >= caocao.x) {
+                        guanyu.kill(caocao);
+                        break;
+                    }
+                    if (caocao.x - guanyu.x >= 20) {
+                        System.out.println("曹操甩了关羽20米，逃跑成功!");
+                        break;
+                    }
+                    System.out.println("触发技能后的位置为: \n" +
+                            "曹操: " + caocao.x + "米\n" +
+                            "徐晃: " + xuhuang.x + "米\n" +
+                            "张辽: " + zhangliao.x + "米\n" +
+                            "关羽: " + guanyu.x + "米"
+                    );
+
+                    System.out.println("------------------------------");
+                }
+
         }
-    }
+
+
+
 }
