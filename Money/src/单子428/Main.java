@@ -1,6 +1,5 @@
 package 单子428;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
