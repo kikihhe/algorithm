@@ -1,4 +1,4 @@
-package Money625;
+package Money625.第一次实验.第一题;
 
 import java.util.Scanner;
 public class DoWhileN {

@@ -1,4 +1,4 @@
-package Money625;
+package Money625.第一次实验.第二题;
 
 public class JiuJiu {
 

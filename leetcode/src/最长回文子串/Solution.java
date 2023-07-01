@@ -7,30 +7,26 @@ class Solution {
         if (s.length() == 1) {
             return s;
         }
-        int length = s.length();
-        boolean[][] dp = new boolean[length][length];
-        for (int i = 0; i < length; i++) {
+        char[] arr = s.toCharArray();
+        int start = 0;
+        int max = 1;
+        boolean[][] dp = new boolean[arr.length][arr.length];
+        for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j <= i; j++) {
                 dp[i][j] = true;
             }
         }
-        char[] arr = s.toCharArray();
-        for (int i = length - 2; i >= 0; i--) {
-            for (int j = length - 1; j > i; j--) {
+        for (int i = arr.length - 2; i >= 0; i--) {
+            for (int j = arr.length - 1; j > i; j--) {
                 dp[i][j] = (arr[i] == arr[j]) && dp[i+1][j-1];
-            }
-        }
-        int max = 0;
-        int start = 0;
-        for (int i = 0; i < length; i++) {
-            for (int j = i; j < length; j++) {
-                if (dp[i][j] && (j - i + 1) > max) {
+                if (dp[i][j] && j - i + 1 > max) {
                     max = j - i + 1;
                     start = i;
                 }
             }
         }
         return s.substring(start, start + max);
+
     }
 
     public static void main(String[] args) {
