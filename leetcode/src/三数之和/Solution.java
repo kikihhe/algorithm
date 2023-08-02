@@ -11,8 +11,9 @@ class Solution {
         Arrays.sort(nums);
         if (nums[0] > 0) return res;
         for (int i = 0; i < nums.length - 2; i++) {
-            // 已经排序，nums[i]是当前最小的元素，如果连它都大于0，后面的也大于0，不用算了
+            // 已经排序，nums[i]是从 nums[i]到nums[nums.length] 范围内最小的元素，如果连它都大于0，后面的也大于0，不用算了
             if (nums[i] > 0) break;
+
             // 当前数等于上一个数，上一个数的所有情况已总结,不用再算一遍
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
