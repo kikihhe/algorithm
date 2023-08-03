@@ -39,7 +39,11 @@ class Solution {
         for (int i = 0; i < arr.length; i++) {
             // 如果map中包含第i个字母，更新left的值
             if (map.containsKey(arr[i])) {
-                left = Math.max(map.get(arr[i]) + 1, left);
+                int oldIndex = map.get(arr[i]);
+                // 为什么要加一?
+                // abcaefg    此时来到第二个a 的位置，判断有a, 且oldIndex=0,
+                // 我们现在想要将窗口移动到没有重复字符的位置，不就是 oldIndex + 1 = 1吗？
+                left = Math.max(oldIndex + 1, left);
             }
             map.put(arr[i], i);
             max = Math.max(max, i - left + 1);
@@ -50,7 +54,7 @@ class Solution {
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        int pwwkew = s.lengthOfLongestSubstring("pwwkew");
+        int pwwkew = s.lengthOfLongestSubstring(" ");
         System.out.println(pwwkew);
     }
 }
