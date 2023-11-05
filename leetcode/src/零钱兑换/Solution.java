@@ -28,7 +28,7 @@ class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-1        int[] arr = {1, 2, 5};
+       int[] arr = {1, 2, 5};
         int target = 10;
 
         int count = solution.coinChange(arr, target);
