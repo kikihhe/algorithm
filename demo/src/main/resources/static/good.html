@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+
+</head>
+<body onload="searchGoods()">
+
+<h1>商品管理</h1>
+
+<!-- 查询操作 -->
+<div>
+    <input type="text" id="searchInput" placeholder="输入商品名称">
+    <button onclick="searchGoods()">查询</button>
+</div>
+<button onclick="openAddForm()">新增商品</button>
+
+<!-- 添加商品表单 -->
+<div id="addForm" style="display: none;">
+    <h2>新增商品</h2>
+    <input type="text" id="addName" placeholder="名称">
+    <input type="text" id="addPrice" placeholder="价格">
+    <input type="text" id="addCount" placeholder="数量">
+    <input type="text" id="addDescription" placeholder="描述">
+    <button onclick="addGoods()">新增</button>
+    <button onload="closeAddForm()">取消</button>
+</div>
+
+<!-- 商品列表 -->
+<table id="goodsTable">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>名称</th>
+        <th>价格</th>
+        <th>数量</th>
+        <th>描述</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="goodsList">
+    <!-- 商品数据将在此处渲染 -->
+    </tbody>
+</table>
+
+<!-- 编辑商品表单 -->
+<div id="editForm" style="display: none;">
+    <h2>编辑商品</h2>
+    <div>名称</div><input type="text" id="editName" placeholder="名称">
+    <div>价格</div><input type="text" id="editPrice" placeholder="价格">
+    <div>数量</div><input type="text" id="editCount" placeholder="数量">
+    <div>描述</div><input type="text" id="editDescription" placeholder="描述">
+    <button onclick="updateGoods()">提交</button>
+    <button onclick="closeEditForm()">取消</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
