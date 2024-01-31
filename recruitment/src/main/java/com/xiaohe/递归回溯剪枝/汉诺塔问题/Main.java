@@ -1,4 +1,4 @@
-package com.xiaohe.递归.汉诺塔问题;
+package com.xiaohe.递归回溯剪枝.汉诺塔问题;
 
 import java.util.List;
 
