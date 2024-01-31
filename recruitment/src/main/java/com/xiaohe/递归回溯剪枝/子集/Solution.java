@@ -24,8 +24,8 @@ public class Solution {
         // 1. 要
         list.add(arr[index]);
         process(arr, index + 1);
-        // 2. 不要
         list.remove(list.size() - 1);
+        // 2. 不要
         process(arr, index + 1);
     }
 
