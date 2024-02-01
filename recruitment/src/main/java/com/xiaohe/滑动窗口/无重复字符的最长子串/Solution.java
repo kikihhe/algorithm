@@ -19,7 +19,7 @@ class Solution {
                 // 第一次 : 此时 right = 5, left = 0, 出现的数据为 a, 它上次在 2 出现过
                 //         将 left 更新为 此数据之前的位置+1，也就是 left = map.get(arr[right]) + 1 = 3
                 // 第二次 : 此时 right = 6, left = 3, 出现的数据为 d, 它上次在 0 出现过
-                //         left不需要更新, left = left
+                //         难道还要 left = 0 + 1 = 1 吗 ？ left 不需要更新了, left = left
                 left = Math.max(left, map.get(arr[right]) + 1);
             }
             map.put(arr[right], right);
