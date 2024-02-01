@@ -23,13 +23,14 @@ public class Solution {
             sum = sum + arr[right];
             // 判断，如果 arr[left] + ... + arr[right] >= target，让左窗口移动
             while (sum >= target) {
-                min = Math.min(min, right = left + 1);
+                min = Math.min(min, right - left + 1);
                 // 出窗口
                 sum = sum - arr[left];
                 left++;
             }
+            right++;
         }
-        return min;
+        return min == Integer.MAX_VALUE ? 0 : min;
     }
 
     public static void main(String[] args) {
