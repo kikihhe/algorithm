@@ -1,5 +1,8 @@
 package com.xiaohe.动态规划.粉刷房子;
 
+/**
+ * 这个题和 买卖股票的最佳时机含冷冻期 很像
+ */
 class Solution {
     public int minCost(int[][] costs) {
         // dp[i][0] : 将 i 位置的房子粉刷成红色需要的最小花费(加上前面涂房子的花费)
