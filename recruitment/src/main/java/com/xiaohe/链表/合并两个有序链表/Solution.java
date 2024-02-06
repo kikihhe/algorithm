@@ -5,8 +5,6 @@ package com.xiaohe.链表.合并两个有序链表;
  * @Description :
  * @date : 2024-01-28 14:20
  */
-
-// Definition for singly-linked list.
 class ListNode {
     int val;
     ListNode next;
