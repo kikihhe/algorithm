@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class 快速排序 {
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 0, 3, 9, 2, 1, 34, 4};
+        int[] arr = new int[]{1, 4, 7, 100, 82, 7, 7, 12, 7, 11};
         new 快速排序().quickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
