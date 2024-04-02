@@ -1,4 +1,4 @@
-package com.xiaohe.动态规划.买卖股票的最佳时机含手续费;
+package com.xiaohe.动态规划.股票问题.买卖股票的最佳时机含手续费;
 
 public class Solution {
     public int maxProfit(int[] prices, int fee) {
