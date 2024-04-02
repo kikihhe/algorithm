@@ -1,4 +1,4 @@
-package com.xiaohe.美团笔试.正则序列;
+package 美团笔试.正则序列;
 
 import java.util.Arrays;
 import java.util.Scanner;
