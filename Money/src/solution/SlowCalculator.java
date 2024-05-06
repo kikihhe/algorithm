@@ -1,4 +1,4 @@
-package 单子317;
+package solution;
 
 public class SlowCalculator implements Runnable {
 

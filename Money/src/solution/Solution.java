@@ -1,4 +1,4 @@
-package 单子317;
+package solution;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,7 @@ import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.FutureTask;
 
-/**
- * @author : 小何
- * @Description :
- * @date : 2024-03-17 16:08
- */
+
 public class Solution implements CommandRunner {
     /**
      * N - FutureTask
@@ -133,7 +129,7 @@ public class Solution implements CommandRunner {
             try {
                 futureTask.get();
             } catch (Exception e) {
-                e.printStackTrace();
+
             }
         }
     }
