@@ -1,47 +1,70 @@
 package com;
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
+
+
+class Node {
+    int val;
+    Node next;
+}
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int m = scanner.nextInt();
-        String[] ipList = new String[n + 1];
-        // 将对应编号的IP放到数组中
-        for (int i = 0; i < n; i++) {
-            String str = scanner.next();
-            int id = scanner.nextInt();
-            ipList[id] = str;
-        }
-        Map<String, List<String>> ipMap = new HashMap<>();
-        // 构造IP之间的连通性
-        for (int i = 0; i < m; i++) {
-            int a = scanner.nextInt();
-            int b = scanner.nextInt();
-            List<String> strings = ipMap.get(ipList[a]);
-            if (strings == null) {
-                strings = new ArrayList<>();
-                ipMap.put(ipList[a], strings);
-            }
-            strings.add(ipList[b]);
-        }
-        int count = scanner.nextInt();
-        for (int i = 0; i < count; i++) {
-            String a = scanner.next();
-            String b = scanner.next();
-            List<String> strings = ipMap.get(a);
-            if (strings == null || strings.isEmpty() || !strings.contains(b)) {
-                System.out.println("No");
-            } else {
-                System.out.println("Yes");
-            }
 
-        }
     }
+
+    private static Node sort(Node root) {
+        if (root == null || root.next == null) {
+            return null;
+        }
+        Node slow = findMid(root);
+        Node p = slow.next;
+        slow.next = null;
+        Node newHed = sort(root);
+        Node node = sort(p);
+        Node process = process(root, p);
+        Node q = process;
+        while (q.next != null) {
+            q = q.next;
+        }
+        q.next = node;
+        return newHed;
+    }
+
+
+    private static Node findMid(Node root) {
+        Node fast = root;
+        Node slow = root;
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    private static Node process(Node root, Node p) {
+        Node q = new Node();
+        Node newHead = q;
+        Node l1 = root;
+        Node l2 = p;
+        while (l1.next != null && l2.next != null) {
+            if (l1.val < l2.val) {
+                newHead.next = l1;
+                l1 = l1.next;
+                newHead = newHead.next;
+            } else {
+                newHead.next = l2;
+                l2 = l2.next;
+                newHead = newHead.next;
+
+            }
+        }
+        if (l1.next != null) {
+            newHead.next = l1.next;
+        } else if (l2.next != null) {
+            newHead.next = l2.next;
+        }
+        return q.next;
+    }
+
 }
