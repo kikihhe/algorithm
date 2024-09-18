@@ -41,6 +41,14 @@ class Task implements Runnable {
         this.lock = lock;
     }
 
+    /**
+     * 第一个 notify 作用 :
+     *      如果没有 notify，1线程抢到锁打印1，然后 wait释放锁，2线程抢到锁打印2然后wait释放锁，这俩线程都wait
+     * 第二个 notify 作用 :
+     *      如果没有第二个 notify, 1线程 抢到锁，唤醒 2线程，然后打印 99 后 wait 释放锁
+     *                          2线程 抢到锁，唤醒 1线程，然后打印 100 后 wait 释放锁
+     *                          此时1线程醒着，2线程正在wait，程序无法退出
+     */
     @Override
     public void run() {
         while (i < max) {
