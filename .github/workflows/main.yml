@@ -1,0 +1,18 @@
+# .github/workflows/push_ctl.yml
+name: push ctl to S3
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'CTL Version (格式要求 vX.Y.Z)'
+        required: true
+        default: 'v0.0.1'
+
+jobs:
+  push-ctl:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: TEST
+        run: |
+          echo "测试 ${{ inputs.version }}"
